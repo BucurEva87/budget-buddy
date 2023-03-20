@@ -13,7 +13,7 @@
   <body>
     <% if notice.present? || alert.present? %>
       <script>
-        setTimeout(() => document.querySelector('#flash-section').classList.add('fadeOut'), 5000);
+        setTimeout(() => document.querySelector('#flash-section').classList.add('fadeOut'), 6000);
       </script>
       <div id="flash-section" class="<%= alert.present? ? 'alert' : 'notice' %>">
         <% if notice.present? %>
