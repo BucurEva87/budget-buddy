@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
   get 'splash_screen/home'
-  devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :users  
 
-  # Defines the root path route ("/")
-  root "splash_screen#home"
+  devise_scope :user do
+    authenticated :user do
+      root 'splash_screen#home', as: :authenticated_root
+    end
+
+    unauthenticated do
+      root 'splash_screen#unauth_home', as: :unauthenticated_root
+    end
+  end
+
+  root "splash_screen#unauth_home"
 end
