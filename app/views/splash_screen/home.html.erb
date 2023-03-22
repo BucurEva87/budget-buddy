@@ -1,1 +1,12 @@
 <h1>Hello! You are authenticated!</h1>
+
+<p>You are currently signed in as: <strong><%= current_user.name %></strong> (<em><%= current_user.email %></em>)</p>
+
+<% if current_user.photo.attached? %>
+  <%= link_to image_tag(current_user.photo_thumbnail, style: 'border-radius: 50%;'), current_user.photo_thumbnail %>
+<% else %>
+  <p>There is no image currently attached to your account</p>
+<% end %>
+
+<%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+<%= link_to 'Update profile', edit_user_registration_path %>
