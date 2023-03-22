@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'splash_screen/home'
-  devise_for :users  
+  devise_for :users
 
   devise_scope :user do
     authenticated :user do
