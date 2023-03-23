@@ -1,0 +1,14 @@
+<%= form_with model: @group, format: :html do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :icon %>
+    <%= f.file_field :icon, accept: "image/*" %>
+    <%# f.text_field :icon_url %>
+  </div>
+
+  <%= f.submit 'Add Group' %>
+<% end %>

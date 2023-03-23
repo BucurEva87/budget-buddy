@@ -8,5 +8,5 @@
   <p>There is no image currently attached to your account</p>
 <% end %>
 
-<%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+<%= link_to "Sign out", destroy_user_session_path, data: { 'turbo-method': :delete } %>
 <%= link_to 'Update profile', edit_user_registration_path %>
