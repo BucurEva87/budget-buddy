@@ -3,3 +3,10 @@
 <p>Number of Groups: <%= @groups.count %></p>
 
 <%= link_to 'Create a new Group', new_group_path %>
+
+<% @groups.each do |group| %>
+  <div class="card">
+    <h2><%= group.name %></h2>
+    <%= image_tag(group.icon_thumbnail, style: 'border-radius: 1rem;') %>
+  </div>
+<% end %>

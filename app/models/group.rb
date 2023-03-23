@@ -1,11 +1,15 @@
-class Group < ApplicationRecord  
+class Group < ApplicationRecord
   has_many :entries, dependent: :destroy
 
   has_one_attached :icon
 
-  after_commit :add_default_icon, on: [:create, :update]
+  after_commit :add_default_icon, on: %i[create update]
 
   validates :name, presence: true, length: { minimum: 2, maximum: 50 }
+
+  def icon_thumbnail
+    icon.variant(resize: '150x150!').processed
+  end
 
   private
 

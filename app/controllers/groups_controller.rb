@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
     @group.icon.attach(params[:group][:icon]) if @group.icon.present?
 
     if @group.valid? && @group.save
-      redirect_to @group, notice: 'Group was created'
+      redirect_to groups_path, notice: 'Group was created'
     else
       render :new, alert: 'Group was not created at all'
     end

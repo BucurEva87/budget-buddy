@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   has_one_attached :photo
 
-  after_commit :add_default_photo, on: [:create, :update]
+  after_commit :add_default_photo, on: %i[create update]
 
   validates :name, presence: true, length: { minimum: 2, maximum: 50 }
 
