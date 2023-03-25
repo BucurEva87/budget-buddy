@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_22_092849) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_24_080415) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,7 +33,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_092849) do
     t.bigint "byte_size", null: false
     t.string "checksum"
     t.datetime "created_at", null: false
-    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
@@ -43,24 +42,33 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_092849) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.bigint "author_id", null: false
     t.string "name", limit: 100, null: false
-    t.decimal "amount", precision: 10, scale: 2, null: false
+    t.float "amount", null: false
+    t.bigint "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_entries_on_author_id"
   end
 
+  create_table "entries_groups", id: false, force: :cascade do |t|
+    t.bigint "entry_id"
+    t.bigint "group_id"
+    t.index ["entry_id", "group_id"], name: "index_entries_groups_on_entry_id_and_group_id", unique: true
+    t.index ["entry_id"], name: "index_entries_groups_on_entry_id"
+    t.index ["group_id"], name: "index_entries_groups_on_group_id"
+  end
+
   create_table "groups", force: :cascade do |t|
     t.string "name", limit: 50
     t.string "icon"
+    t.bigint "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_groups_on_author_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name", limit: 50, null: false
-    t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
@@ -79,4 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_092849) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "entries", "users", column: "author_id"
+  add_foreign_key "entries_groups", "entries"
+  add_foreign_key "entries_groups", "groups"
+  add_foreign_key "groups", "users", column: "author_id"
 end

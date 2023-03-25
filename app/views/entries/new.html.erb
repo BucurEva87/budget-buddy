@@ -1,0 +1,29 @@
+<%= form_with model: @entry, url: group_entries_path, local: true, data: { turbo: false } do |f| %>
+  <% if @entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+      <ul>
+      <% @entry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :amount %>
+    <%= f.number_field :amount, step: :any %>
+  </div>
+
+  <div class="field">
+    <%= f.label :groups_ids, 'Groups' %>
+    <%= f.text_field :groups_ids %>
+  </div>
+
+  <%= f.submit 'Make transaction' %>
+<% end %>

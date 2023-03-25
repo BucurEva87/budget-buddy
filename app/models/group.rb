@@ -1,29 +1,29 @@
 class Group < ApplicationRecord
-  has_many :entries, dependent: :destroy
+  alias_attribute :image, :icon
+
+  include BlobHelper
+
+  belongs_to :author, class_name: 'User'
+  has_and_belongs_to_many :entries
 
   has_one_attached :icon
 
-  after_commit :add_default_icon, on: %i[create update]
+  before_commit :attach_default_icon, on: %i[create update]
 
   validates :name, presence: true, length: { minimum: 2, maximum: 50 }
+  validate :acceptable_image
 
   def icon_thumbnail
-    icon.variant(resize: '150x150!').processed
+    icon.variant(resize: '128x128!').processed
+  end
+
+  def total_payments
+    self.entries.sum(:amount)
   end
 
   private
 
-  def add_default_icon
-    return if icon.attached?
-
-    icon.attach(
-      io: File.open(
-        Rails.root.join(
-          'app', 'assets', 'images', 'group_default.png'
-        )
-      ),
-      filename: 'group_default.png',
-      content_type: 'image/png'
-    )
+  def attach_default_icon
+    icon.attach(ActiveStorage::Blob.find_by(key: 'group_default')) unless icon.attached?
   end
 end

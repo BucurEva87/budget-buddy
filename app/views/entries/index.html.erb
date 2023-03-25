@@ -1,0 +1,9 @@
+<h1>These are all the entries in group <%= @group.name %></h1>
+<small><em>Total in this category is: <strong>$<%= @entries.map { |e| e.amount }.sum %></strong></em></small>
+
+<% @entries.each do |entry| %>
+  <div class="card">
+    <h2><%= entry.name %></h2>
+    <p><%= entry.author.name %> payed $<%= entry.amount %></p>
+  </div>
+<% end %>

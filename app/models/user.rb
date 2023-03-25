@@ -2,11 +2,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
+  alias_attribute :image, :photo
+
+  include BlobHelper
+
   has_one_attached :photo
 
-  after_commit :add_default_photo, on: %i[create update]
+  before_commit :attach_default_photo, on: %i[create update]
 
   validates :name, presence: true, length: { minimum: 2, maximum: 50 }
+  validate :acceptable_image
 
   def photo_thumbnail
     photo.variant(resize: '100x100!').processed
@@ -14,17 +19,7 @@ class User < ApplicationRecord
 
   private
 
-  def add_default_photo
-    return if photo.attached?
-
-    photo.attach(
-      io: File.open(
-        Rails.root.join(
-          'app', 'assets', 'images', 'user_default.png'
-        )
-      ),
-      filename: 'user_default.png',
-      content_type: 'image/png'
-    )
+  def attach_default_photo
+    photo.attach(ActiveStorage::Blob.find_by(key: 'user_default')) unless photo.attached?
   end
 end

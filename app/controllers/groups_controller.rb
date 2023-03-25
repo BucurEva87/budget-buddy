@@ -10,13 +10,14 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(sanitize)
-    @group.icon.attach(params[:group][:icon]) if @group.icon.present?
+    @group = Group.new(sanitize.merge(author: current_user))
+    icon = params[:group][:icon]
+    @group.icon.attach(icon) if icon
 
     if @group.valid? && @group.save
       redirect_to groups_path, notice: 'Group was created'
     else
-      render :new, alert: 'Group was not created at all'
+      render :new
     end
   end
 
