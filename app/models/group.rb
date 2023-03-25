@@ -10,7 +10,7 @@ class Group < ApplicationRecord
 
   before_commit :attach_default_icon, on: %i[create update]
 
-  validates :name, presence: true, length: { minimum: 2, maximum: 50 }
+  validates :name, presence: true, length: { minimum: 2, maximum: 50 }, uniqueness: { case_sensitive: false }
   validate :acceptable_image
 
   def icon_thumbnail
@@ -18,7 +18,7 @@ class Group < ApplicationRecord
   end
 
   def total_payments
-    self.entries.sum(:amount)
+    self.entries.sum(:amount).round(2)
   end
 
   private

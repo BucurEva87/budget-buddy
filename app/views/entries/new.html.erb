@@ -1,3 +1,16 @@
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var input = document.querySelector("#tag-input")
+    var tagify = new Tagify(input, {
+      whitelist: '<%= Group.all.pluck(:name).join('||') %>'.split('||'),
+      enforceWhitelist: true,
+      dropdown: {
+        enabled: 1,
+      }
+    })
+  })
+</script>
+
 <%= form_with model: @entry, url: group_entries_path, local: true, data: { turbo: false } do |f| %>
   <% if @entry.errors.any? %>
     <div id="error_explanation">
@@ -22,8 +35,10 @@
 
   <div class="field">
     <%= f.label :groups_ids, 'Groups' %>
-    <%= f.text_field :groups_ids %>
+    <%= text_field_tag :groups_ids, '', id: 'tag-input', value: @group.name %>
   </div>
 
-  <%= f.submit 'Make transaction' %>
+  <%= f.submit 'Save' %>
 <% end %>
+
+<%= link_to 'Back to transactions', group_entries_path(@group) %>

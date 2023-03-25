@@ -1,5 +1,7 @@
 <h1>These are all the entries in group <%= @group.name %></h1>
-<small><em>Total in this category is: <strong>$<%= @entries.map { |e| e.amount }.sum %></strong></em></small>
+<small><em>Total in this category is: <strong>$<%= @group.total_payments %></strong></em></small>
+
+<%= link_to 'Back to groups', groups_path %>
 
 <% @entries.each do |entry| %>
   <div class="card">
@@ -7,3 +9,5 @@
     <p><%= entry.author.name %> payed $<%= entry.amount %></p>
   </div>
 <% end %>
+
+<%= link_to 'Add new transaction', new_group_entry_path(@group) %>
