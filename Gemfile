@@ -72,7 +72,7 @@ group :development do
   # gem "spring"
 
   # Mock up confirmation mail sending from Devise
-  gem 'letter_opener'
+  # gem 'letter_opener'
 
   # Hot reloading
   gem 'guard'
