@@ -3,6 +3,11 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.all
+
+    # @notifier = {
+    #   title: 'Notification from the Group controller',
+    #   body: 'This is a random notification just shown up here for testing purposes'
+    # }
   end
 
   def new
@@ -11,6 +16,9 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(sanitize.merge(author: current_user))
+
+    # authorize! :create, @group
+
     icon = params[:group][:icon]
     @group.icon.attach(icon) if icon
 

@@ -4,7 +4,8 @@ class Group < ApplicationRecord
   include BlobHelper
 
   belongs_to :author, class_name: 'User'
-  has_and_belongs_to_many :entries
+  has_many :group_entries, dependent: :destroy
+  has_many :entries, through: :group_entries
 
   has_one_attached :icon
 

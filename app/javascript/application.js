@@ -4,3 +4,5 @@ import "controllers"
 
 import Tagify from 'tagify';
 window.Tagify = Tagify
+import notifier from './notifier/index'
+window.notifier = notifier

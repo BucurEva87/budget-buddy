@@ -28,14 +28,12 @@ users = User.create!([
   {
     name: 'Bucur Eva-Lavinia',
     email: 'bucur.eva87@gmail.com',
-    password: 's0m3t3st',
-    confirmed_at: Time.now
+    password: 's0m3t3st'
   },
   {
     name: 'Mobutu Seseseko',
     email: 'mobutu.seseseko@gmail.com',
-    password: '4n0th3rt3st',
-    confirmed_at: Time.now
+    password: '4n0th3rt3st'
   }
 ])
 

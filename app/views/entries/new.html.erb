@@ -1,12 +1,15 @@
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
-    var input = document.querySelector("#tag-input")
-    var tagify = new Tagify(input, {
-      whitelist: '<%= Group.all.pluck(:name).join('||') %>'.split('||'),
+    const input = document.querySelector("#tag-input")
+    const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }
+    const categories = '<%= Group.all.pluck(:name).join('||') %>'.split('||')
+    const tagify = new Tagify(input, {
+      whitelist: categories.map(c => c.replace(/[&<>"']/g, function(ch) { return map[ch] })),
       enforceWhitelist: true,
       dropdown: {
         enabled: 1,
-      }
+      },
+      delimiters: null
     })
   })
 </script>
@@ -35,7 +38,7 @@
 
   <div class="field">
     <%= f.label :groups_ids, 'Groups' %>
-    <%= text_field_tag :groups_ids, '', id: 'tag-input', value: @group.name %>
+    <%= text_field_tag :groups_ids, '', id: 'tag-input', name: 'entry[groups_ids]', value: @group.name %>
   </div>
 
   <%= f.submit 'Save' %>

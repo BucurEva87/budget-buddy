@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   include BlobHelper
 
+  has_many :groups, dependent: :destroy
+  has_many :entries, dependent: :destroy
+
   has_one_attached :photo
 
   before_commit :attach_default_photo, on: %i[create update]

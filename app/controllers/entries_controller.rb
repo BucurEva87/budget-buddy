@@ -1,13 +1,13 @@
 class EntriesController < ApplicationController
   before_action :authenticate_user!, :set_group
+  # load_and_authorize_resource
 
   def new
     @entry = Entry.new
   end
 
   def create
-    group_names = JSON.parse(params[:groups_ids]).map { |o| o['value'] }
-    groups = Group.where(name: group_names)
+    groups = Group.where(name: JSON.parse(params[:entry][:groups_ids]).map { |o| o['value'] })
 
     @entry = Entry.new(sanitize.merge(author: current_user, groups: groups))
 
@@ -29,6 +29,6 @@ class EntriesController < ApplicationController
   end
 
   def sanitize
-    params.require(:entry).permit(:name, :amount, :groups_ids)
+    params.require(:entry).permit(:name, :amount)
   end
 end
