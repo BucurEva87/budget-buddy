@@ -9,7 +9,7 @@ class EntriesController < ApplicationController
   def create
     groups = Group.where(name: JSON.parse(params[:entry][:groups_ids]).map { |o| o['value'] })
 
-    @entry = Entry.new(sanitize.merge(author: current_user, groups: groups))
+    @entry = Entry.new(sanitize.merge(author: current_user, groups:))
 
     if @entry.valid? && @entry.save
       redirect_to group_entries_path(@group), notice: 'Transaction was made'
@@ -17,7 +17,7 @@ class EntriesController < ApplicationController
       render :new
     end
   end
-  
+
   def index
     @entries = @group.entries.order(created_at: :desc)
   end

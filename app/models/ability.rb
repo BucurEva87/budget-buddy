@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Ability
   include CanCan::Ability
 
@@ -30,7 +28,7 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/blob/develop/docs/define_check_abilities.md
 
     user ||= User.new # guest user (not logged in)
-    
+
     can :manage, Group, author: user
     can :manage, Entry, author: user
   end

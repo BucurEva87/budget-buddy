@@ -19,7 +19,7 @@ class Group < ApplicationRecord
   end
 
   def total_payments
-    self.entries.sum(:amount).round(2)
+    entries.sum(:amount).round(2)
   end
 
   private
