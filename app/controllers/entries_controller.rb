@@ -19,7 +19,7 @@ class EntriesController < ApplicationController
   end
 
   def index
-    @entries = @group.entries.order(created_at: :desc)
+    @entries = @group.entries.where(author: current_user).order(created_at: :desc)
   end
 
   private

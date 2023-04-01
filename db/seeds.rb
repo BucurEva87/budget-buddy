@@ -8,7 +8,6 @@
 
 # Upload the default images for User and Group as blobs in ActiveStorage
 {
-  user_default: Rails.root.join('app', 'assets', 'images', 'user_default.png'),
   group_default: Rails.root.join('app', 'assets', 'images', 'group_default.png')
 }.each do |key, path|
   blob = ActiveStorage::Blob.create_before_direct_upload!(

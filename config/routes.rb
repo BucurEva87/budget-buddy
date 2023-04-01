@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-      root 'splash_screen#home', as: :authenticated_root
+      root 'groups#index'
     end
 
     unauthenticated do

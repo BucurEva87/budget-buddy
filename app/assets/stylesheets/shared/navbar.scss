@@ -1,0 +1,64 @@
+@import '../partials/variables';
+
+nav#navbar {
+  width: 100vw;
+  height: 3rem;
+  background-color: $primaryColor;
+  margin-bottom: 1rem;
+
+  ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    li {
+      width: 33.3%;
+      font-size: 1.4rem;
+      color: $white;
+
+      a {
+        color: $white;
+        text-decoration: none;
+      }
+
+      &:first-child {
+        text-align: left;
+        margin-left: 1rem;
+
+        a {
+          font-size: xx-large;
+        }
+      }
+
+      &:last-child {
+        text-align: right;
+        margin-right: 1rem;
+      }
+
+      &#sectionTitle {
+        text-transform: uppercase;
+      }
+
+      .burger {
+        display: inline-block;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+      }
+
+      .burger span {
+        display: block;
+        height: 3px;
+        background-color: $white;
+        margin-bottom: 5px;
+        transition: transform 0.2s ease-out;
+      }
+
+      .btn-sign-out {
+        all: unset;
+        cursor: pointer;
+      }
+    }
+  }
+}

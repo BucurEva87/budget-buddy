@@ -1,12 +1,22 @@
-<p>This is the index page for Groups</p>
+<section id="groups_index">
+  <%= render 'shared/navbar', backButtonLink: nil, sectionTitle: 'Groups', additionalLink: nil %>
 
-<p>Number of Groups: <%= @groups.count %></p>
-
-<%= link_to 'Create a new Group', new_group_path %>
-
-<% @groups.each do |group| %>
-  <div class="card">
-    <h2><%= link_to group.name, group_entries_path(group) %> ($<%= group.total_payments %>)</h2>
-    <%= image_tag group.icon_thumbnail, style: 'border-radius: 1rem;' %>
+  <div id="gift">
+    <span>Gift credit</span>
+    <span>$45.00</span>
   </div>
-<% end %>
+  
+  <div id="card-container">
+    <% @groups.each do |group| %>
+      <div class="card">
+        <%= image_tag group.icon_thumbnail %>
+        <h2><%= link_to group.name, group_entries_path(group) %></h2>
+        <span>$<%= group.total_payments %></span>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="btn-container">
+    <%= link_to 'Create a new Group', new_group_path, class: 'btn-add-group' %>
+  </div>
+</section>
