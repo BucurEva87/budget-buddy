@@ -6,23 +6,17 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag 'reset', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
+    <%= yield :stylesheets %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <% if notice.present? || alert.present? %>
-      <script>
-        setTimeout(() => document.querySelector('#flash-section').classList.add('fadeOut'), 6000);
+    <% if @notifier.present? %>
+      <script type="module">
+        notifier.add(<%= raw @notifier.to_json %>)
       </script>
-      <div id="flash-section" class="<%= alert.present? ? 'alert' : 'notice' %>">
-        <% if notice.present? %>
-          <p class="notice"><%= notice %></p>
-        <% end %>
-        <% if alert.present? %>
-          <p class="alert"><%= alert %></p>
-        <% end %>
-      </div>
     <% end %>
 
     <%= yield %>

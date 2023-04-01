@@ -1,0 +1,139 @@
+@import url(//db.onlinewebfonts.com/c/49724e4a5f133558d2f0023576119246?family=MoveoSansExtW00-Bold);
+
+@font-face { font-family: "MoveoSansExtW00-Bold"; src: url("//db.onlinewebfonts.com/t/49724e4a5f133558d2f0023576119246.eot"); src: url("//db.onlinewebfonts.com/t/49724e4a5f133558d2f0023576119246.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/49724e4a5f133558d2f0023576119246.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/49724e4a5f133558d2f0023576119246.woff") format("woff"), url("//db.onlinewebfonts.com/t/49724e4a5f133558d2f0023576119246.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/49724e4a5f133558d2f0023576119246.svg#MoveoSansExtW00-Bold") format("svg"); }
+
+$success: #64ac6e;
+$info: #4f9aab;
+$danger: #ab3822;
+
+#notifier-container {
+  width: 30vw;
+  padding: 0 0.4em;
+  font-family: MoveoSansExtW00-Bold, sans-serif;
+  overflow: hidden;
+  font-size: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  .card {
+    width: 100%;
+    min-height: 7.2em;
+    padding: 2em;
+    text-align: center;
+    position: relative;
+    margin-bottom: 0.6em;
+    transition: all 0.4s;
+
+    > div[class$='ground'] {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      opacity: 1;
+      transition: all 0.4s;
+    }
+
+    .background {
+      width: 100%;
+      left: 0;
+    }
+    &.info .background { background-color: $info; }
+    &.success .background { background-color: $success; }
+    &.danger .background { background-color: $danger; }
+
+    .foreground {
+      display: flex;
+      align-items: center;
+      padding: 0 1.6em;
+      width: 98%;
+      left: 1%;
+      column-gap: 1em;
+      position: relative;
+
+      .icon img {
+        width: 6.4em;
+        height: 6.4em;
+        border-radius: 1em;
+      }
+
+      .info {
+        flex-grow: 1;
+        text-align: left;
+        text-shadow: 0.2em 0.2em 0.2em #111;
+
+        h2 {
+          padding-bottom: 0.3em;
+          font-size: 1.4em;
+        }
+
+        p {
+          font-size: 1em;
+        }
+      }
+
+      .countdown {
+        position: absolute;
+        top: 0.4em;
+        right: 0.4em;
+
+        svg {
+          width: 3em;
+          height: 3em;
+          fill: none;
+        }
+
+        span {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 1.5em;
+          height: 1.5em;
+          color: #d5b914cf;
+          font-size: 1em;
+          font-weight: bold;
+          position: absolute;
+          top: 25%;
+          left: 25%;
+        }
+      }
+    }
+
+    &.info .foreground {
+      background-color: darken($info, 30%);
+
+      h2 { color: $info; }
+      p { color: lighten($info, 12%); }
+    }
+
+    &.success .foreground {
+      background-color: darken($success, 30%);
+
+      h2 { color: $success; }
+      p { color: lighten($success, 12%); }
+    }
+
+    &.danger .foreground {
+      background-color: #1b1719;
+
+      h2 { color: $danger; }
+      p { color: lighten($danger, 12%); }
+    }
+
+    &.hidden {
+      .background {
+        opacity: 0;
+        transform: translateX(-25%);
+      }
+
+      .foreground {
+        opacity: 0;
+        transform: translateX(25%);
+      }
+    }
+
+    &.begone {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+  }
+}
