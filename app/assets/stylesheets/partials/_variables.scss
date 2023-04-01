@@ -1,0 +1,25 @@
+$primaryColor: #297bbd;
+$primaryColorDark: #206298;
+$secondaryColor: #59b53e;
+$textColor1: #979da3;
+$textColor2: #868a8e;
+$textColor3: #535d67;
+$textColor4: #424c54;
+$primaryBackground: #f1f1f1;
+$white: #fff;
+
+@font-face {
+  font-family: 'Proxima Nova Light';
+  src: url("/assets/Proxima Nova Light.ttf");
+  font-family: 'Proxima Nova Bold';
+  src: url("/assets/Proxima Nova Bold.ttf");
+  font-family: 'Black Chancery';
+  src: url("/assets/Black Chancery.ttf");
+}
+
+$proximaNovaLight: 'Proxima Nova Light', sans-serif;
+$proximaNovaBold: 'Proxima Nova Bold', sans-serif;
+$blackChancery: 'Black Chancery', serif;
+$btnFont: verdana, geneva, tahoma, sans-serif;
+
+$defaultFontSize: 10px;

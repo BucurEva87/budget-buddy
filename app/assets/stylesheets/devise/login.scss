@@ -1,0 +1,28 @@
+@import '../partials/variables';
+
+#devise_login {
+  form {
+    input[type=email],
+    input[type=password] {
+      width: 100vw;
+      height: 2.4rem;
+      background-color: $white;
+      border: solid 0.1rem darken($primaryBackground, 10%);
+      padding: 1rem 1rem;
+    }
+
+    input[type=password] {
+      margin-bottom: 1rem;
+    }
+
+    input::placeholder {
+      color: $textColor1;
+    }
+
+    .actions {
+      position: absolute;
+      bottom: 1rem;
+      width: 100%;
+    }
+  }
+}

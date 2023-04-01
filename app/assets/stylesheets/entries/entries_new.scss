@@ -1,0 +1,36 @@
+@import '../partials/variables';
+
+#entries_new {
+  form {
+    input[type=text],
+    input[type=number],
+    .tagify {
+      width: 100vw;
+      height: 2.4rem;
+      background-color: $white;
+      border: solid 0.1rem darken($primaryBackground, 10%);
+      padding: 1rem 1rem;
+    }
+
+    .tagify {
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      text-align: left;
+
+      .tagify__tag-text {
+        font-size: 1.3rem;
+      }
+    }
+
+    input::placeholder {
+      color: $textColor1;
+    }
+
+    .actions {
+      position: absolute;
+      bottom: 1rem;
+      width: 100%;
+    }
+  }
+}

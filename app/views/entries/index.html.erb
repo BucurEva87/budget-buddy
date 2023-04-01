@@ -1,13 +1,17 @@
-<h1>These are all the entries in group <%= @group.name %></h1>
-<small><em>Total in this category is: <strong>$<%= @group.total_payments %></strong></em></small>
-
-<%= link_to 'Back to groups', groups_path %>
-
-<% @entries.each do |entry| %>
-  <div class="card">
-    <h2><%= entry.name %></h2>
-    <p><%= entry.author.name %> payed $<%= entry.amount %></p>
+<section id="entries_index">
+  <%= render 'shared/navbar', backButtonLink: groups_path, sectionTitle: "#{@group.name} ($#{@entries.sum(:amount)})", additionalLink: nil %>
+  
+  <div id="card-container">
+    <% @entries.each do |entry| %>
+      <div class="card">
+        <h2><%= entry.name %></h2>
+        <p><%= entry.author.name %> payed</p>
+        <span>$<%= entry.amount %></span>
+      </div>
+    <% end %>
   </div>
-<% end %>
 
-<%= link_to 'Add new transaction', new_group_entry_path(@group), data: { turbo: false } %>
+  <div class="btn-container">
+    <%= link_to 'Add new transaction', new_group_entry_path(@group), data: { turbo: false }, class: 'btn-add-entry' %>
+  </div>
+</section>
