@@ -1,0 +1,77 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import './partials/variables';
+@import './shared/section';
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  max-width: 100vw;
+  overflow-x: hidden;
+  height: 100vh;
+  // justify-content: center;
+  // align-items: center;
+  background-color: $primaryBackground;
+  font-size: $defaultFontSize;
+}
+
+.btn-splash {
+  width: 100%;
+  height: 5rem;
+  padding: 1.5rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: $btnFont;
+}
+
+.btn-primary {
+  background-color: $primaryColor;
+  color: $white;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: $textColor2;
+}
+
+.btn-submit {
+  all: unset;
+  width: 90%;
+  height: 3rem;
+  background-color: $primaryColor;
+  color: $white;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+a {
+  color: $textColor1;
+  font-size: 1.2rem;
+  text-decoration: none;
+}

@@ -1,0 +1,31 @@
+<section id="groups_new">
+  <%= render 'shared/navbar', backButtonLink: groups_path, sectionTitle: 'Create new Group', additionalLink: nil %>
+
+  <%= form_with model: @group, local: true, data: { turbo: false } do |f| %>
+    <!--
+    <% if @group.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+        <ul>
+        <% @group.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    -->
+  
+    <div class="field">
+      <%= f.text_field :name, placeholder: 'Group name' %>
+    </div>
+  
+    <div class="field file-upload">
+      <%= image_tag 'no_group.png' %>
+      <%= f.file_field :icon, accept: "image/*" %>
+    </div>
+  
+    <div class="actions">
+      <%= f.submit 'Save', class: 'btn-submit' %>
+    </div>
+  <% end %>
+</section>

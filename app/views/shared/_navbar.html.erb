@@ -1,0 +1,21 @@
+<nav id="navbar">
+  <ul>
+    <% if backButtonLink %>
+      <li><%= link_to '&larr;'.html_safe, backButtonLink %></li>
+    <% else %>
+      <li>
+        <div class="burger">
+          <span class="burger-line-1"></span>
+          <span class="burger-line-2"></span>
+          <span class="burger-line-3"></span>
+        </div>
+      </li>
+    <% end %>
+    <li id="sectionTitle"><%= sectionTitle %></li>
+    <% unless additionalLink %>
+      <li><%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn-sign-out' %></li>
+    <% else %>
+      <li><%= link_to additionalLink, additionalLinkPath %></li>
+    <% end %>
+  </ul>
+</nav>

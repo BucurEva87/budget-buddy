@@ -1,0 +1,75 @@
+@import '../partials/variables';
+
+section#groups_index {
+  height: auto;
+
+  div#gift {
+    width: 100vw;
+    height: 3rem;
+    background-color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    padding: 0 0.7rem;
+    margin-top: -1rem;
+
+    span:first-child {
+      color: $textColor1;
+    }
+  }
+
+  div#card-container {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 5rem;
+
+    div.card {
+      width: 100%;
+      background-color: $white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+
+      img {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 1rem;
+      }
+
+      h2 {
+        flex-grow: 1;
+        padding: 0 1rem;
+        text-align: left;
+      }
+
+      span {
+        font-size: large;
+      }
+    }
+  }
+
+  .btn-container {
+    width: 100vw;
+    height: 7rem;
+    background-color: $secondaryColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+
+    .btn-add-group {
+      width: 90%;
+      padding: 2rem;
+      text-transform: uppercase;
+      color: $white;
+      border: solid 0.1rem $white;
+      border-radius: 0.3rem;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+@import '../partials/variables';
+
+#groups_new {
+  form {
+    input[type=text],
+    input[type=email],
+    input[type=password] {
+      width: 100vw;
+      height: 2.4rem;
+      background-color: $white;
+      border: solid 0.1rem darken($primaryBackground, 10%);
+      padding: 1rem 1rem;
+    }
+
+    .file-upload {
+      background-color: $white;
+      display: flex;
+      padding: 1rem 0;
+      align-items: center;
+
+      img {
+        width: 3rem;
+        height: 3rem;
+        margin-left: 2rem;
+      }
+
+      input[type=file] {
+        width: 100%;
+        border: none;
+        padding-left: 1.5rem;
+        font-size: large;
+        color: $textColor1;
+        cursor: pointer;
+      }
+
+      input[type=file]::file-selector-button {
+        display: none;
+      }
+    }
+
+    input::placeholder {
+      color: $textColor1;
+    }
+
+    .actions {
+      position: absolute;
+      bottom: 1rem;
+      width: 100%;
+    }
+  }
+}

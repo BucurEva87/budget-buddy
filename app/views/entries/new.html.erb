@@ -1,0 +1,50 @@
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    const input = document.querySelector("#tag-input")
+    const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }
+    const categories = '<%= Group.all.pluck(:name).join('||') %>'.split('||')
+    const tagify = new Tagify(input, {
+      whitelist: categories.map(c => c.replace(/[&<>"']/g, function(ch) { return map[ch] })),
+      enforceWhitelist: true,
+      dropdown: {
+        enabled: 1,
+      },
+      delimiters: null
+    })
+  })
+</script>
+
+<section id="entries_new">
+  <%= render 'shared/navbar', backButtonLink: group_entries_path(@group), sectionTitle: 'Create new Entry', additionalLink: nil %>
+
+  <%= form_with model: @entry, url: group_entries_path, local: true, data: { turbo: false } do |f| %>
+    <!--
+    <% if @entry.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+        <ul>
+        <% @entry.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    -->
+  
+    <div class="field">
+      <%= f.text_field :name, placeholder: 'Name' %>
+    </div>
+  
+    <div class="field">
+      <%= f.number_field :amount, step: :any, placeholder: 'Amount' %>
+    </div>
+  
+    <div class="field">
+      <%= text_field_tag :groups_ids, '', id: 'tag-input', name: 'entry[groups_ids]', value: @group.name %>
+    </div>
+  
+    <div class="actions">
+      <%= f.submit 'Save', class: 'btn-submit' %>
+    </div>
+  <% end %>
+</section>
