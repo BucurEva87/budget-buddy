@@ -63,7 +63,7 @@
 
 > Add a link to your deployed project.
 
-- [Live Demo Link](https://mysite-g8gc.onrender.com/)
+- [Live Demo Link](https://budget-buddy-5axd.onrender.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -158,9 +158,9 @@ Example:
 
 > Describe 1 - 3 features you will add to the project.
 
-- [ ] **Register users**
-- [ ] **Add category**
-- [ ] **Add transaction**
+- [x] **Register users**
+- [x] **Add category**
+- [x] **Add transaction**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
